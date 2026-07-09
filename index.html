@@ -2,8 +2,9 @@
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0">
 <title>9天跨省环线旅行手册</title>
+<script src="https://cdn.jsdelivr.net/npm/echarts@4.9.0/dist/echarts.min.js"></script>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;background:#f1f5f9;color:#1e293b;line-height:1.6}
@@ -17,13 +18,9 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hira
 .page.active{display:block}
 .card{background:#fff;border-radius:12px;padding:16px;margin-bottom:12px;box-shadow:0 1px 3px rgba(0,0,0,.06)}
 .card-title{font-size:16px;font-weight:700;margin-bottom:12px;display:flex;align-items:center;gap:8px}
-/* 新增城市行程点位地图模块 */
-.city-map-flow{background:#fff;border-radius:12px;padding:16px;margin-bottom:16px;overflow-x:auto}
-.map-row{display:flex;align-items:center;gap:4px;min-width:max-content}
-.map-city-item{flex-shrink:0;padding:8px 12px;border-radius:8px;cursor:pointer;font-size:13px;font-weight:600;text-align:center;min-width:76px}
-.map-city-solo{background:#dbeafe;color:#1e40af;border:1px solid #93c5fd}
-.map-city-group{background:#ffedd5;color:#9a3412;border:1px solid #fdba74}
-.map-arrow{color:#94a3b8;font-weight:bold;padding:0 4px}
+#tripMap{width:100%;height:420px;border-radius:12px;background:#f8fafc}
+.map-loading{text-align:center;color:#94a3b8;font-size:13px;padding-top:180px}
+.map-desc{font-size:12px;color:#64748b;margin-top:8px}
 .date-timeline{display:flex;gap:8px;overflow-x:auto;padding:8px 0;margin-bottom:16px}
 .date-item{flex-shrink:0;text-align:center;padding:10px 14px;border-radius:10px;cursor:pointer;min-width:64px}
 .date-item.solo{background:#dbeafe;color:#1e40af;border:2px solid #93c5fd}
@@ -102,6 +99,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hira
 @media (min-width:640px){
   .info-grid{grid-template-columns:repeat(4,1fr)}
   .spot-grid{grid-template-columns:repeat(3,1fr)}
+  #tripMap{height:500px}
 }
 </style>
 </head>
@@ -122,33 +120,13 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hira
 
 <!-- 首页 -->
 <div class="page active" id="page-home">
-  <!-- 修改1：新增城市点位地图模块，删除旧路线文字模块 -->
-  <div class="city-map-flow">
-    <div class="card-title">📍 行程城市地图（点击跳转当日行程）</div>
-    <div class="map-row">
-      <div class="map-city-item map-city-solo" onclick="goDay(0)">上海松江</div>
-      <span class="map-arrow">→</span>
-      <div class="map-city-item map-city-solo" onclick="goDay(1)">龙南</div>
-      <span class="map-arrow">→</span>
-      <div class="map-city-item map-city-solo" onclick="goDay(2)">南武当</div>
-      <span class="map-arrow">→</span>
-      <div class="map-city-item map-city-solo" onclick="goDay(3)">河源</div>
-      <span class="map-arrow">→</span>
-      <div class="map-city-item map-city-group" onclick="goDay(4)">潮汕/漳州</div>
-      <span class="map-arrow">→</span>
-      <div class="map-city-item map-city-group" onclick="goDay(5)">土楼</div>
-      <span class="map-arrow">→</span>
-      <div class="map-city-item map-city-group" onclick="goDay(6)">沙县/尤溪</div>
-      <span class="map-arrow">→</span>
-      <div class="map-city-item map-city-group" onclick="goDay(7)">延平</div>
-      <span class="map-arrow">→</span>
-      <div class="map-city-item map-city-group" onclick="goDay(8)">武夷山/上饶</div>
-      <span class="map-arrow">→</span>
-      <div class="map-city-item map-city-solo" onclick="goDay(0)">上海松江</div>
-    </div>
-    <p style="font-size:12px;color:#64748b;margin-top:10px">
-      <span style="display:inline-block;width:12px;height:12px;background:#dbeafe;border-radius:3px;vertical-align:middle;margin-right:4px"></span>单人独行
-      <span style="display:inline-block;width:12px;height:12px;background:#ffedd5;border-radius:3px;vertical-align:middle;margin:0 4px 0 12px"></span>三人/双人结伴
+  <div class="card">
+    <div class="card-title">📍 行程交互式地图（点击城市跳转当日行程｜双指缩放/拖拽平移）</div>
+    <div id="tripMap"><div class="map-loading">地图加载中...</div></div>
+    <p class="map-desc">
+      <span style="display:inline-block;width:12px;height:12px;background:#2563eb;border-radius:50%;vertical-align:middle;margin-right:4px"></span>单人独行城市
+      <span style="display:inline-block;width:12px;height:12px;background:#ea580c;border-radius:50%;vertical-align:middle;margin:0 12px 0 12px"></span>三人/双人结伴城市
+      ｜拖动地图平移，双指/滚轮缩放，点击标记跳转对应日期行程
     </p>
   </div>
 
@@ -159,15 +137,13 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hira
       <div class="date-item solo" onclick="goDay(1)"><div class="day">7.19</div><div class="week">周五</div><div class="city">龙南</div></div>
       <div class="date-item solo" onclick="goDay(2)"><div class="day">7.20</div><div class="week">周六</div><div class="city">南武当</div></div>
       <div class="date-item solo" onclick="goDay(3)"><div class="day">7.21</div><div class="week">周日</div><div class="city">河源</div></div>
-      <!-- 修改3：7.22改为group橙红色 -->
       <div class="date-item group" onclick="goDay(4)"><div class="day">7.22</div><div class="week">周一</div><div class="city">潮汕→漳州</div></div>
-      <!-- 修改3：7.23改为group橙红色 -->
       <div class="date-item group" onclick="goDay(5)"><div class="day">7.23</div><div class="week">周二</div><div class="city">土楼</div></div>
       <div class="date-item group" onclick="goDay(6)"><div class="day">7.24</div><div class="week">周三</div><div class="city">沙县→尤溪</div></div>
       <div class="date-item group" onclick="goDay(7)"><div class="day">7.25</div><div class="week">周四</div><div class="city">延平</div></div>
       <div class="date-item group" onclick="goDay(8)"><div class="day">7.26</div><div class="week">周五</div><div class="city">武夷山→上饶</div></div>
     </div>
-    <p style="font-size:12px;color:#64748b;margin-top:8px">
+    <p class="map-desc">
       <span style="display:inline-block;width:12px;height:12px;background:#dbeafe;border-radius:3px;vertical-align:middle;margin-right:4px"></span>单人独行
       <span style="display:inline-block;width:12px;height:12px;background:#ffedd5;border-radius:3px;vertical-align:middle;margin:0 4px 0 12px"></span>三人/双人结伴
     </p>
@@ -191,8 +167,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hira
       <button class="func-btn" onclick="showPage('day')"><span class="icon">☀️</span>天气查看</button>
     </div>
   </div>
-
-  <!-- 修改2：删除首页天气卡片模块 -->
 
   <div class="card">
     <div class="card-title">⚠️ 重要提醒</div>
@@ -226,16 +200,13 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hira
         <tr><td>7.18</td><td>普速</td><td>K469</td><td>上海松江</td><td>赣州</td><td>17:38</td><td>次日07:28</td><td>+1天，加8车9号下铺</td></tr>
         <tr><td>7.19</td><td>普速</td><td>T31</td><td>赣州</td><td>龙南</td><td>07:52</td><td>09:11</td><td></td></tr>
         <tr><td>7.21</td><td>高铁</td><td>G3061</td><td>龙南东</td><td>河源东</td><td>09:10</td><td>10:00</td><td></td></tr>
-        <!-- 修改3：7.22行改为group-row橙色底色 -->
         <tr class="group-row"><td>7.22</td><td>城际</td><td>C6784</td><td>河源东</td><td>潮汕</td><td>09:36</td><td>11:39</td><td>kj单人，晚间三人汇合</td></tr>
         <tr class="group-row"><td>7.22</td><td>飞机</td><td class="empty-placeholder">待补</td><td>浦东T1</td><td>厦门高崎T4</td><td>11:25</td><td>13:25</td><td>ccl+ctc</td></tr>
         <tr class="group-row"><td>7.22</td><td>高铁</td><td>D2393</td><td>厦门</td><td>漳州</td><td>19:24</td><td>19:55</td><td>ccl+ctc，漳州全员汇合</td></tr>
-        <!-- 修改3：7.23行改为group-row橙色底色 -->
         <tr class="group-row"><td>7.23</td><td>租车</td><td>全天自驾</td><td>漳州</td><td>土楼环线</td><td>全天</td><td>全天</td><td>三人同行</td></tr>
         <tr class="group-row"><td>7.24</td><td>高铁</td><td>G966</td><td>漳州</td><td>三明北</td><td>09:52</td><td>12:20</td><td>三人</td></tr>
         <tr class="group-row"><td>7.24</td><td>高铁</td><td>D3271</td><td>三明北</td><td>尤溪</td><td>18:08</td><td>18:27</td><td>三人</td></tr>
         <tr class="group-row"><td>7.25</td><td>高铁</td><td>G648</td><td>尤溪</td><td>三明北</td><td>11:40</td><td>11:58</td><td>三人</td></tr>
-        <!-- 修改5：航班19:00 -->
         <tr class="group-row"><td>7.25</td><td>飞机</td><td class="empty-placeholder">待补</td><td>沙县机场</td><td>虹桥T2</td><td>19:00</td><td>20:20</td><td>ctc单独返程</td></tr>
         <tr class="group-row"><td>7.25</td><td>高铁</td><td>D6318</td><td>三明北</td><td>延平西</td><td>12:22</td><td>12:39</td><td>ccl+kj双人</td></tr>
         <tr class="group-row"><td>7.26</td><td>高铁</td><td>G3090</td><td>延平站</td><td>南平市站</td><td>10:08</td><td>10:34</td><td>ccl+kj</td></tr>
@@ -292,7 +263,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hira
       <div class="spot-group-title">广东 · 河源</div>
       <div class="spot-grid">
         <div class="spot-card"><div class="spot-name">河源恐龙博物馆</div><div class="spot-meta">门票：待查 · 时长：待查</div></div>
-        <!-- 修改6：删除龙凤岛，仅保留镜花缘 -->
         <div class="spot-card"><div class="spot-name">万绿湖 · 镜花缘</div><span class="spot-tip">不用坐观光车</span><div class="spot-meta">门票：待查 · 时长：待查</div></div>
         <div class="spot-card"><div class="spot-name">农夫山泉工厂</div><div class="spot-meta">门票：待查 · 时长：待查</div></div>
       </div>
@@ -347,7 +317,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hira
   <div class="card">
     <div class="card-title">🏨 全程住宿汇总</div>
     <div id="hotelList">
-      <!-- 修改4：K469改为加8车9号下铺 -->
       <div class="hotel-item"><div class="hotel-date"><div class="m">7月</div><div class="d">18</div></div><div class="hotel-info"><div class="hotel-name">K469次列车卧铺</div><div class="hotel-city">上海 → 赣州（途中）</div><div class="hotel-addr">加8车9号下铺</div></div></div>
       <div class="hotel-item"><div class="hotel-date"><div class="m">7月</div><div class="d">19</div></div><div class="hotel-info"><div class="hotel-name">柒季酒店（龙南滨江广场店）</div><div class="hotel-city">江西 · 龙南 106车队附近</div><div class="hotel-addr">详细地址：待补充</div></div></div>
       <div class="hotel-item"><div class="hotel-date"><div class="m">7月</div><div class="d">20</div></div><div class="hotel-info"><div class="hotel-name">柒季酒店（龙南滨江广场店）</div><div class="hotel-city">江西 · 龙南</div><div class="hotel-addr">连住第二晚</div></div></div>
@@ -365,6 +334,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hira
 </div>
 
 <script>
+/* ========== 页面切换 ========== */
 function showPage(name){
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
   document.getElementById('page-'+name).classList.add('active');
@@ -373,12 +343,138 @@ function showPage(name){
   window.scrollTo(0,0);
 }
 
+/* ========== 城市数据 ========== */
+const cityData = [
+  {name:"上海松江", coord:[121.24, 31.00], dayIdx:0, type:"solo"},
+  {name:"龙南",     coord:[114.79, 24.92], dayIdx:1, type:"solo"},
+  {name:"河源",     coord:[114.71, 23.74], dayIdx:3, type:"solo"},
+  {name:"潮州",     coord:[116.67, 23.66], dayIdx:4, type:"group"},
+  {name:"漳州",     coord:[117.65, 24.51], dayIdx:4, type:"group"},
+  {name:"沙县",     coord:[117.79, 26.41], dayIdx:6, type:"group"},
+  {name:"尤溪",     coord:[118.18, 26.17], dayIdx:6, type:"group"},
+  {name:"延平",     coord:[118.17, 26.65], dayIdx:7, type:"group"},
+  {name:"武夷山",   coord:[117.99, 27.76], dayIdx:8, type:"group"},
+  {name:"上饶",     coord:[117.97, 28.44], dayIdx:8, type:"group"}
+];
+const lineOrder = [0,1,2,3,4,5,6,7,8,9];
+let tripChart = null;
+
+/* ========== 初始化地图：优先加载官方GeoJSON，失败则降级散点图 ========== */
+function initTripMap(){
+  tripChart = echarts.init(document.getElementById("tripMap"));
+  window.addEventListener("resize", function(){ tripChart.resize(); });
+
+  // 从ECharts官方仓库加载中国地图GeoJSON（jsDelivr CDN）
+  const mapUrl = "https://cdn.jsdelivr.net/gh/apache/echarts@4.9.0/map/json/china.json";
+
+  fetch(mapUrl)
+    .then(function(res){ return res.json(); })
+    .then(function(geoJson){
+      // 注册地图
+      echarts.registerMap("china", geoJson);
+      renderGeoMap();
+    })
+    .catch(function(err){
+      // 加载失败：降级为纯散点连线图（无地图底图）
+      console.warn("地图底图加载失败，降级为散点模式", err);
+      renderScatterFallback();
+    });
+}
+
+/* 模式A：真实中国地图底图 */
+function renderGeoMap(){
+  const soloPts = cityData.filter(i=>i.type==="solo").map(i=>({name:i.name, value:i.coord.concat(i.dayIdx)}));
+  const groupPts = cityData.filter(i=>i.type==="group").map(i=>({name:i.name, value:i.coord.concat(i.dayIdx)}));
+  const lines = [];
+  for(let i=0; i<lineOrder.length-1; i++){
+    lines.push([cityData[lineOrder[i]].coord, cityData[lineOrder[i+1]].coord]);
+  }
+
+  tripChart.setOption({
+    tooltip: {
+      trigger: "item",
+      formatter: function(p){
+        if(p.seriesType === "scatter") return p.name + "<br/>点击查看当日行程";
+        return "";
+      }
+    },
+    geo: {
+      map: "china",
+      roam: true,
+      zoom: 4.8,
+      center: [117, 27],
+      scaleLimit: { min: 3, max: 15 },
+      label: { show: false },
+      itemStyle: { areaColor: "#f6f8fc", borderColor: "#cbd5e1" },
+      emphasis: { label: { show: false }, itemStyle: { areaColor: "#e0eaff" } }
+    },
+    series: [
+      { type:"lines", coordinateSystem:"geo", data:lines,
+        lineStyle:{ width:2, color:"#60a5fa", type:"dashed" }, silent:true },
+      { type:"scatter", coordinateSystem:"geo", data:soloPts, symbolSize:12,
+        itemStyle:{ color:"#2563eb", borderColor:"#fff", borderWidth:2 },
+        label:{ show:true, formatter:"{b}", position:"right", color:"#1e40af", fontSize:12 }, zlevel:2 },
+      { type:"scatter", coordinateSystem:"geo", data:groupPts, symbolSize:12,
+        itemStyle:{ color:"#ea580c", borderColor:"#fff", borderWidth:2 },
+        label:{ show:true, formatter:"{b}", position:"right", color:"#9a3412", fontSize:12 }, zlevel:2 }
+    ]
+  });
+
+  bindClickEvent();
+}
+
+/* 模式B：兜底散点图（无地图底图，保证功能可用） */
+function renderScatterFallback(){
+  const soloPts = cityData.filter(i=>i.type==="solo").map(i=>[i.coord[0], i.coord[1], i.dayIdx, i.name]);
+  const groupPts = cityData.filter(i=>i.type==="group").map(i=>[i.coord[0], i.coord[1], i.dayIdx, i.name]);
+  const lines = [];
+  for(let i=0; i<lineOrder.length-1; i++){
+    lines.push([cityData[lineOrder[i]].coord, cityData[lineOrder[i+1]].coord]);
+  }
+
+  tripChart.setOption({
+    tooltip: {
+      trigger:"item",
+      formatter: function(p){ return p.data[3] + "<br/>点击查看当日行程"; }
+    },
+    dataZoom: [
+      { type:"inside", zoomOnMouseWheel:true },
+      { type:"slider", bottom:8, height:12 }
+    ],
+    xAxis: { type:"value", min:112, max:123, show:false },
+    yAxis: { type:"value", min:22, max:32, show:false },
+    grid: { left:0, right:0, top:0, bottom:30 },
+    series: [
+      { type:"lines", data:lines, lineStyle:{width:2, color:"#60a5fa", type:"dashed"}, silent:true },
+      { type:"scatter", data:soloPts, symbolSize:12, itemStyle:{color:"#2563eb"},
+        label:{show:true, formatter:"{@3}", color:"#1e40af", fontSize:11} },
+      { type:"scatter", data:groupPts, symbolSize:12, itemStyle:{color:"#ea580c"},
+        label:{show:true, formatter:"{@3}", color:"#9a3412", fontSize:11} }
+    ]
+  });
+
+  bindClickEvent();
+}
+
+/* 绑定点击跳转 */
+function bindClickEvent(){
+  tripChart.on("click", function(params){
+    if(params.seriesType === "scatter"){
+      const val = params.value;
+      // geo模式value第三位是dayIdx；散点兜底也是第三位
+      if(val && val.length >= 3 && typeof val[2] === "number"){
+        goDay(val[2]);
+      }
+    }
+  });
+}
+
+/* ========== 每日行程数据 ========== */
 const days = [
   {date:'7月18日 周四', city:'上海松江→赣州', mode:'solo', modeText:'👤 单人独行（kj）',
     weather:{icon:'⛅', temp:'28~35℃', rain:'40%', wind:'3级', uv:'强'},
     items:[
       {type:'train', time:'17:38', title:'K469 上海松江站出发', desc:'前往赣州站，普速列车，次日到达'},
-      // 修改4：车厢改为加8车
       {type:'hotel', time:'夜间', title:'列车卧铺过夜', desc:'加8车9号下铺，车程约14小时'}
     ], hotel:'K469次列车卧铺 · 加8车9号下铺'},
   {date:'7月19日 周五', city:'龙南', mode:'solo', modeText:'👤 单人独行（kj）',
@@ -411,7 +507,6 @@ const days = [
       {type:'spot', time:'下午', title:'万绿湖风景区 · 镜花缘', desc:'核心游玩区域', tip:'镜花缘不用坐观光车，步行即可'},
       {type:'spot', time:'下午', title:'农夫山泉工厂', desc:'万绿湖水源地参观'}
     ], hotel:'骏逸连锁酒店（万隆城）'},
-  // 修改3：7.22改为group结伴
   {date:'7月22日 周一', city:'潮汕→漳州', mode:'group', modeText:'👥 三人汇合（kj / ccl+ctc晚间汇合）',
     weather:{icon:'☀️', temp:'28~35℃', rain:'20%', wind:'3级', uv:'很强'},
     items:[
@@ -423,7 +518,6 @@ const days = [
       {type:'hotel', time:'——', title:'ccl + ctc 行程', desc:'11:25 浦东T1飞厦门高崎T4（13:25到），下午厦门游玩'},
       {type:'train', time:'19:24', title:'D2393 厦门出发（ccl+ctc）', desc:'19:55 抵达漳州站，三人漳州汇合'}
     ], hotel:'kj：如家派柏云酒店（漳州古城万达广场店） ｜ ccl/ctc：待定'},
-  // 修改3：7.23改为group三人结伴
   {date:'7月23日 周二', city:'漳州土楼', mode:'group', modeText:'👥 三人全天同行（kj + ccl + ctc）',
     weather:{icon:'☀️', temp:'28~36℃', rain:'10%', wind:'2级', uv:'很强'},
     items:[
@@ -447,7 +541,6 @@ const days = [
     items:[
       {type:'spot', time:'上午', title:'尤溪市区自由活动', desc:'三人同行'},
       {type:'train', time:'11:40', title:'G648 尤溪出发', desc:'11:58 抵达三明北，三人同行'},
-      // 修改5：航班19:00
       {type:'hotel', time:'下午', title:'ctc 返程航班', desc:'沙县机场19:00起飞 → 20:20 抵达虹桥T2'},
       {type:'train', time:'12:22', title:'D6318 三明北出发（ccl+kj）', desc:'12:39 抵达延平西站，双人继续行程'},
       {type:'bus', time:'抵达后', title:'1路 / G3公交', desc:'延平西 → 市区酒店，车程约43分钟，放行李'},
@@ -489,12 +582,18 @@ function renderDay(){
   html += '</div></div><div class="card"><div class="card-title">🏨 当日住宿</div><p style="font-size:14px">'+d.hotel+'</p></div>';
   document.getElementById('dayContent').innerHTML = html;
 }
-function goDay(n){currentDay=n;renderDay();showPage('day');
-  document.querySelectorAll('.nav-tab').forEach((t,i)=>{t.classList.remove('active');if(i===1)t.classList.add('active');});
+function goDay(n){
+  currentDay = n;
+  renderDay();
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById('page-day').classList.add('active');
+  document.querySelectorAll('.nav-tab').forEach((t,i)=>{t.classList.remove('active'); if(i===1) t.classList.add('active');});
+  window.scrollTo(0,0);
 }
-function prevDay(){if(currentDay>0){currentDay--;renderDay();window.scrollTo(0,0);}}
-function nextDay(){if(currentDay<days.length-1){currentDay++;renderDay();window.scrollTo(0,0);}}
+function prevDay(){ if(currentDay>0){ currentDay--; renderDay(); window.scrollTo(0,0); } }
+function nextDay(){ if(currentDay<days.length-1){ currentDay++; renderDay(); window.scrollTo(0,0); } }
 
+/* ========== 公交数据 ========== */
 const busCities = [
   {name:'龙南市', list:[
     {no:'101路', route:'龙南站 ↔ 106车队', note:'车程约1小时'},
@@ -529,8 +628,12 @@ function switchBusCity(n){
   document.getElementById('busListContent').innerHTML = html;
 }
 
-renderDay();
-switchBusCity(0);
+/* ========== 初始化 ========== */
+window.onload = function(){
+  initTripMap();
+  renderDay();
+  switchBusCity(0);
+}
 </script>
 </body>
 </html>
