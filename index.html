@@ -206,7 +206,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hira
         <tr class="group-row"><td>7.24</td><td>高铁</td><td>G966</td><td>漳州</td><td>三明北</td><td>09:52</td><td>12:04</td><td>03车04A(kj)、03车04B(ccl)、03车04C(ctc)</td></tr>
         <tr class="group-row"><td>7.24</td><td>高铁</td><td>G1683</td><td>三明北</td><td>尤溪</td><td>18:55</td><td>19:14</td><td>14车06A(kj)、14车06B(ccl)、14车06C(ctc)</td></tr>
         <tr class="group-row"><td>7.25</td><td>高铁</td><td>G648</td><td>尤溪</td><td>三明北</td><td>11:40</td><td>11:58</td><td>03车16D(kj)、03车16F(ccl)｜ctc机场返程</td></tr>
-        <tr class="group-row"><td>7.25</td><td>飞机</td><td>待补</td><td>沙县机场</td><td>虹桥T2</td><td>19:00</td><td>20:20</td><td>ctc单人返程</td></tr>
+        <tr class="group-row"><td>7.25</td><td>飞机</td><td>MU6594</td><td>沙县机场</td><td>虹桥T2</td><td>19:00</td><td>20:20</td><td>ctc单人返程</td></tr>
         <tr class="group-row"><td>7.25</td><td>高铁</td><td>D6318</td><td>三明北</td><td>延平西</td><td>12:22</td><td>12:39</td><td>04车03D(kj)、04车03F(ccl)</td></tr>
         <tr class="group-row"><td>7.26</td><td>高铁</td><td>G982</td><td>延平</td><td>南平市站</td><td>09:57</td><td>10:23</td><td>04车05D(kj)、04车05F(ccl)</td></tr>
         <tr class="group-row"><td>7.26</td><td>高铁</td><td>G1670</td><td>武夷山北</td><td>上饶</td><td>18:10</td><td>18:33</td><td>06车02D(kj)、06车02F(ccl)</td></tr>
@@ -352,16 +352,32 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hira
         <div class="hotel-date"><div class="m">7月</div><div class="d">22</div></div>
         <div class="hotel-info">
           <div class="hotel-name">如家派柏·云酒店(漳州古城万达广场店)</div>
-          <div class="hotel-city">漳州｜kj/ctc/ccl汇合</div>
+          <div class="hotel-city">漳州｜kj单人</div>
           <div class="hotel-addr">大床房A</div>
+        </div>
+      </div>
+            <div class="hotel-item">
+        <div class="hotel-date"><div class="m">7月</div><div class="d">22</div></div>
+        <div class="hotel-info">
+          <div class="hotel-name">沐风酒店（漳州碧湖万达店）</div>
+          <div class="hotel-city">漳州｜ctc/ccl</div>
+          <div class="hotel-addr">商务双床房</div>
         </div>
       </div>
       <div class="hotel-item">
         <div class="hotel-date"><div class="m">7月</div><div class="d">23</div></div>
         <div class="hotel-info">
           <div class="hotel-name">如家派柏·云酒店(漳州古城万达广场店)</div>
-          <div class="hotel-city">漳州｜三人同行连住</div>
+          <div class="hotel-city">漳州｜kj单人</div>
           <div class="hotel-addr">大床房A</div>
+        </div>
+      </div>
+            <div class="hotel-item">
+        <div class="hotel-date"><div class="m">7月</div><div class="d">23</div></div>
+        <div class="hotel-info">
+          <div class="hotel-name">沐风酒店（漳州碧湖万达店）</div>
+          <div class="hotel-city">漳州｜ctc/ccl</div>
+          <div class="hotel-addr">商务双床房</div>
         </div>
       </div>
       <div class="hotel-item">
@@ -370,6 +386,14 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hira
           <div class="hotel-name">尤溪乐家酒店</div>
           <div class="hotel-city">尤溪｜kj/ctc/ccl</div>
           <div class="hotel-addr">乐惠房</div>
+        </div>
+      </div>
+      <div class="hotel-item">
+        <div class="hotel-date"><div class="m">7月</div><div class="d">24</div></div>
+        <div class="hotel-info">
+          <div class="hotel-name">尤溪青印酒店（朱子文化苑店）</div>
+          <div class="hotel-city">尤溪｜kj/ctc/ccl</div>
+          <div class="hotel-addr">青享双床房</div>
         </div>
       </div>
       <div class="hotel-item">
@@ -577,14 +601,14 @@ const days = [
       {type:'train', time:'17:00', title:'潮汕 → 漳州（kj）', desc:'傍晚出发前往漳州汇合'},
       {type:'hotel', time:'——', title:'ccl + ctc 行程', desc:'11:25 浦东T1飞厦门高崎T4（13:25到），下午厦门游玩'},
       {type:'train', time:'19:24', title:'D2393 厦门出发（ccl+ctc）', desc:'19:55 抵达漳州站，三人漳州汇合'}
-    ], hotel:'kj：如家派柏云酒店（漳州古城万达广场店） ｜ ccl/ctc：待定'},
+    ], hotel:'kj：如家派柏云酒店（漳州古城万达广场店） ｜ ccl/ctc：沐风酒店'},
   {date:'7月23日 周四', city:'漳州土楼', mode:'group', modeText:'👥 三人全天同行（kj + ccl + ctc）',
     weather:{icon:'☀️', temp:'28~36℃', rain:'10%', wind:'2级', uv:'很强'},
     items:[
       {type:'spot', time:'全天', title:'漳州土楼一日租车环线', desc:'全天租车：漳州 → 南靖土楼 → 永定土楼 → 返回漳州'},
       {type:'spot', time:'白天', title:'南靖土楼群', desc:'田螺坑/云水谣等经典土楼'},
       {type:'spot', time:'白天', title:'永定土楼群', desc:'承启楼等大型客家围楼'}
-    ], hotel:'如家派柏云酒店（漳州古城万达广场店）'},
+    ], hotel:'如家派柏云酒店（漳州古城万达广场店） ｜ccl/ctc：沐风酒店'},
   {date:'7月24日 周五', city:'沙县→尤溪', mode:'group', modeText:'👥 三人同行（kj + ccl + ctc）',
     weather:{icon:'⛅', temp:'27~35℃', rain:'40%', wind:'2级', uv:'强'},
     items:[
@@ -595,7 +619,7 @@ const days = [
       {type:'train',time:'18:55',title:'G1683三明北',desc:'19:14尤溪 14A kj 14B ccl 14C ctc'},
       {type:'bus', time:'傍晚', title:'尤溪8路公交', desc:'尤溪站 → 市区，车程约30分钟'},
       {type:'spot', time:'夜间', title:'朱子古街', desc:'夜间亮灯景观最佳', tip:'建议天黑后游览，夜景好看'}
-    ], hotel:'kj：尤溪乐家酒店 ｜ ccl/ctc：待定'},
+    ], hotel:'kj：尤溪乐家酒店 ｜ ccl/ctc：尤溪青印酒店'},
   {date:'7月25日 周六', city:'延平', mode:'group', modeText:'👥 上午三人 / 下午 ccl+kj 双人',
     weather:{icon:'🌦️', temp:'27~35℃', rain:'60%', wind:'2级', uv:'中等'},
     items:[
