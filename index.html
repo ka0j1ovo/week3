@@ -121,7 +121,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hira
 <!-- 首页 -->
 <div class="page active" id="page-home">
   <div class="card">
-    <div class="card-title">📍 行程交互式地图（点击城市跳转当日行程｜双指缩放/拖拽平移）</div>
+    <div class="card-title">📍 地图 </div>
     <div id="tripMap"><div class="map-loading">地图加载中...</div></div>
     <p class="map-desc">
       <span style="display:inline-block;width:12px;height:12px;background:#2563eb;border-radius:50%;vertical-align:middle;margin-right:4px"></span>单人独行城市
@@ -133,15 +133,15 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hira
   <div class="card">
     <div class="card-title">📅 行程日期时间轴</div>
     <div class="date-timeline">
-      <div class="date-item solo" onclick="goDay(0)"><div class="day">7.18</div><div class="week">周四</div><div class="city">上海→赣州</div></div>
-      <div class="date-item solo" onclick="goDay(1)"><div class="day">7.19</div><div class="week">周五</div><div class="city">龙南</div></div>
-      <div class="date-item solo" onclick="goDay(2)"><div class="day">7.20</div><div class="week">周六</div><div class="city">南武当</div></div>
-      <div class="date-item solo" onclick="goDay(3)"><div class="day">7.21</div><div class="week">周日</div><div class="city">河源</div></div>
-      <div class="date-item group" onclick="goDay(4)"><div class="day">7.22</div><div class="week">周一</div><div class="city">潮汕→漳州</div></div>
-      <div class="date-item group" onclick="goDay(5)"><div class="day">7.23</div><div class="week">周二</div><div class="city">土楼</div></div>
-      <div class="date-item group" onclick="goDay(6)"><div class="day">7.24</div><div class="week">周三</div><div class="city">沙县→尤溪</div></div>
-      <div class="date-item group" onclick="goDay(7)"><div class="day">7.25</div><div class="week">周四</div><div class="city">延平</div></div>
-      <div class="date-item group" onclick="goDay(8)"><div class="day">7.26</div><div class="week">周五</div><div class="city">武夷山→上饶</div></div>
+      <div class="date-item solo" onclick="goDay(0)"><div class="day">7.18</div><div class="week">周六</div><div class="city">上海→赣州</div></div>
+      <div class="date-item solo" onclick="goDay(1)"><div class="day">7.19</div><div class="week">周日</div><div class="city">龙南</div></div>
+      <div class="date-item solo" onclick="goDay(2)"><div class="day">7.20</div><div class="week">周一六</div><div class="city">南武当</div></div>
+      <div class="date-item solo" onclick="goDay(3)"><div class="day">7.21</div><div class="week">周二</div><div class="city">河源</div></div>
+      <div class="date-item group" onclick="goDay(4)"><div class="day">7.22</div><div class="week">周三</div><div class="city">潮汕→漳州</div></div>
+      <div class="date-item group" onclick="goDay(5)"><div class="day">7.23</div><div class="week">周四</div><div class="city">土楼</div></div>
+      <div class="date-item group" onclick="goDay(6)"><div class="day">7.24</div><div class="week">周五</div><div class="city">沙县→尤溪</div></div>
+      <div class="date-item group" onclick="goDay(7)"><div class="day">7.25</div><div class="week">周六</div><div class="city">延平</div></div>
+      <div class="date-item group" onclick="goDay(8)"><div class="day">7.26</div><div class="week">周日</div><div class="city">武夷山→上饶</div></div>
     </div>
     <p class="map-desc">
       <span style="display:inline-block;width:12px;height:12px;background:#dbeafe;border-radius:3px;vertical-align:middle;margin-right:4px"></span>单人独行
@@ -164,7 +164,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hira
       <button class="func-btn" onclick="showPage('buses')"><span class="icon">🚌</span>公交手册</button>
       <button class="func-btn" onclick="showPage('spots')"><span class="icon">📍</span>景点清单</button>
       <button class="func-btn" onclick="showPage('hotels')"><span class="icon">🏨</span>住宿汇总</button>
-      <button class="func-btn" onclick="showPage('day')"><span class="icon">☀️</span>天气查看</button>
     </div>
   </div>
 
@@ -195,23 +194,23 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hira
     <div class="card-title">🚄 全程车次/航班总表</div>
     <div style="overflow-x:auto">
     <table class="data-table">
-      <thead><tr><th>日期</th><th>类型</th><th>车次</th><th>出发</th><th>到达</th><th>发车</th><th>抵达</th><th>备注</th></tr></thead>
+      <thead><tr><th>日期</th><th>类型</th><th>车次</th><th>出发</th><th>到达</th><th>发车</th><th>抵达</th><th>座位/人员</th></tr></thead>
       <tbody>
-        <tr><td>7.18</td><td>普速</td><td>K469</td><td>上海松江</td><td>赣州</td><td>17:38</td><td>次日07:28</td><td>+1天，加8车9号下铺</td></tr>
-        <tr><td>7.19</td><td>普速</td><td>T31</td><td>赣州</td><td>龙南</td><td>07:52</td><td>09:11</td><td></td></tr>
-        <tr><td>7.21</td><td>高铁</td><td>G3061</td><td>龙南东</td><td>河源东</td><td>09:10</td><td>10:00</td><td></td></tr>
-        <tr class="group-row"><td>7.22</td><td>城际</td><td>C6784</td><td>河源东</td><td>潮汕</td><td>09:36</td><td>11:39</td><td>kj单人，晚间三人汇合</td></tr>
-        <tr class="group-row"><td>7.22</td><td>飞机</td><td class="empty-placeholder">待补</td><td>浦东T1</td><td>厦门高崎T4</td><td>11:25</td><td>13:25</td><td>ccl+ctc</td></tr>
-        <tr class="group-row"><td>7.22</td><td>高铁</td><td>D2393</td><td>厦门</td><td>漳州</td><td>19:24</td><td>19:55</td><td>ccl+ctc，漳州全员汇合</td></tr>
-        <tr class="group-row"><td>7.23</td><td>租车</td><td>全天自驾</td><td>漳州</td><td>土楼环线</td><td>全天</td><td>全天</td><td>三人同行</td></tr>
-        <tr class="group-row"><td>7.24</td><td>高铁</td><td>G966</td><td>漳州</td><td>三明北</td><td>09:52</td><td>12:20</td><td>三人</td></tr>
-        <tr class="group-row"><td>7.24</td><td>高铁</td><td>D3271</td><td>三明北</td><td>尤溪</td><td>18:08</td><td>18:27</td><td>三人</td></tr>
-        <tr class="group-row"><td>7.25</td><td>高铁</td><td>G648</td><td>尤溪</td><td>三明北</td><td>11:40</td><td>11:58</td><td>三人</td></tr>
-        <tr class="group-row"><td>7.25</td><td>飞机</td><td class="empty-placeholder">待补</td><td>沙县机场</td><td>虹桥T2</td><td>19:00</td><td>20:20</td><td>ctc单独返程</td></tr>
-        <tr class="group-row"><td>7.25</td><td>高铁</td><td>D6318</td><td>三明北</td><td>延平西</td><td>12:22</td><td>12:39</td><td>ccl+kj双人</td></tr>
-        <tr class="group-row"><td>7.26</td><td>高铁</td><td>G3090</td><td>延平站</td><td>南平市站</td><td>10:08</td><td>10:34</td><td>ccl+kj</td></tr>
-        <tr class="group-row"><td>7.26</td><td>高铁</td><td>G3332</td><td>武夷山北</td><td>上饶</td><td>17:04</td><td>17:26</td><td>ccl+kj</td></tr>
-        <tr class="group-row"><td>7.26</td><td>普速</td><td>K1186</td><td>上饶</td><td>上海松江</td><td>22:46</td><td>次日05:43</td><td>+1天返程</td></tr>
+        <tr><td>7.18</td><td>普速</td><td>K469</td><td>上海松江</td><td>赣州</td><td>17:38</td><td>次日07:28</td><td>加8车09下铺｜kj</td></tr>
+        <tr><td>7.19</td><td>普速</td><td>T31</td><td>赣州</td><td>龙南</td><td>07:52</td><td>09:11</td><td>03车03上铺｜kj</td></tr>
+        <tr><td>7.21</td><td>高铁</td><td>G3061</td><td>龙南东</td><td>河源东</td><td>09:10</td><td>10:00</td><td>03车10A｜kj</td></tr>
+        <tr class="group-row"><td>7.22</td><td>城际</td><td>C6784</td><td>河源东</td><td>潮汕</td><td>09:36</td><td>11:39</td><td>05车02F｜kj</td></tr>
+        <tr class="group-row"><td>7.22</td><td>高铁</td><td>G922</td><td>潮汕</td><td>漳州</td><td>17:40</td><td>18:45</td><td>12车02D｜kj</td></tr>
+        <tr class="group-row"><td>7.22</td><td>高铁</td><td>D2393</td><td>厦门</td><td>漳州</td><td>19:24</td><td>19:55</td><td>03车07D(ctc)、03车07F(ccl)</td></tr>
+        <tr class="group-row"><td>7.23</td><td>租车</td><td>全天自驾</td><td>漳州</td><td>土楼环线</td><td>全天</td><td>全天</td><td>kj+ctc+ccl三人同行</td></tr>
+        <tr class="group-row"><td>7.24</td><td>高铁</td><td>G966</td><td>漳州</td><td>三明北</td><td>09:52</td><td>12:04</td><td>03A(kj)、03B(ccl)、03C(ctc)</td></tr>
+        <tr class="group-row"><td>7.24</td><td>高铁</td><td>G1683</td><td>三明北</td><td>尤溪</td><td>18:55</td><td>19:14</td><td>14A(kj)、14B(ccl)、14C(ctc)</td></tr>
+        <tr class="group-row"><td>7.25</td><td>高铁</td><td>G648</td><td>尤溪</td><td>三明北</td><td>11:40</td><td>11:58</td><td>03D(kj)、03F(ccl)｜ctc机场返程</td></tr>
+        <tr class="group-row"><td>7.25</td><td>飞机</td><td>待补</td><td>沙县机场</td><td>虹桥T2</td><td>19:00</td><td>20:20</td><td>ctc单人返程</td></tr>
+        <tr class="group-row"><td>7.25</td><td>高铁</td><td>D6318</td><td>三明北</td><td>延平西</td><td>12:22</td><td>12:39</td><td>04D(kj)、04F(ccl)</td></tr>
+        <tr class="group-row"><td>7.26</td><td>高铁</td><td>G982</td><td>延平</td><td>南平市站</td><td>09:57</td><td>10:23</td><td>05D(kj)、05F(ccl)</td></tr>
+        <tr class="group-row"><td>7.26</td><td>高铁</td><td>G1670</td><td>武夷山北</td><td>上饶</td><td>18:10</td><td>18:33</td><td>02D(kj)、02F(ccl)</td></tr>
+        <tr class="group-row"><td>7.26</td><td>普速</td><td>K1186</td><td>上饶</td><td>上海松江</td><td>22:46</td><td>次日05:43</td><td>02中(kj)、02中(ccl)</td></tr>
       </tbody>
     </table>
     </div>
@@ -317,22 +316,83 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hira
   <div class="card">
     <div class="card-title">🏨 全程住宿汇总</div>
     <div id="hotelList">
-      <div class="hotel-item"><div class="hotel-date"><div class="m">7月</div><div class="d">18</div></div><div class="hotel-info"><div class="hotel-name">K469次列车卧铺</div><div class="hotel-city">上海 → 赣州（途中）</div><div class="hotel-addr">加8车9号下铺</div></div></div>
-      <div class="hotel-item"><div class="hotel-date"><div class="m">7月</div><div class="d">19</div></div><div class="hotel-info"><div class="hotel-name">柒季酒店（龙南滨江广场店）</div><div class="hotel-city">江西 · 龙南 106车队附近</div><div class="hotel-addr">详细地址：待补充</div></div></div>
-      <div class="hotel-item"><div class="hotel-date"><div class="m">7月</div><div class="d">20</div></div><div class="hotel-info"><div class="hotel-name">柒季酒店（龙南滨江广场店）</div><div class="hotel-city">江西 · 龙南</div><div class="hotel-addr">连住第二晚</div></div></div>
-      <div class="hotel-item"><div class="hotel-date"><div class="m">7月</div><div class="d">21</div></div><div class="hotel-info"><div class="hotel-name">骏逸连锁酒店</div><div class="hotel-city">广东 · 河源 万隆城</div><div class="hotel-addr">详细地址：待补充</div></div></div>
-      <div class="hotel-item"><div class="hotel-date"><div class="m">7月</div><div class="d">22</div></div><div class="hotel-info"><div class="hotel-name">如家派柏云酒店（漳州古城万达广场店）</div><div class="hotel-city">福建 · 漳州（全员汇合）</div><div class="hotel-addr">ccl/ctc住宿：待定</div></div></div>
-      <div class="hotel-item"><div class="hotel-date"><div class="m">7月</div><div class="d">23</div></div><div class="hotel-info"><div class="hotel-name">如家派柏云酒店（漳州古城万达广场店）</div><div class="hotel-city">福建 · 漳州（三人同行）</div><div class="hotel-addr">连住第二晚</div></div></div>
-      <div class="hotel-item"><div class="hotel-date"><div class="m">7月</div><div class="d">24</div></div><div class="hotel-info"><div class="hotel-name">尤溪乐家酒店</div><div class="hotel-city">福建 · 尤溪（kj）</div><div class="hotel-addr">ccl/ctc住宿：待定</div></div></div>
-      <div class="hotel-item"><div class="hotel-date"><div class="m">7月</div><div class="d">25</div></div><div class="hotel-info"><div class="hotel-name">A家连锁酒店（南平九峰店）</div><div class="hotel-city">福建 · 延平（ccl+kj）</div><div class="hotel-addr">详细地址：待补充</div></div></div>
-      <div class="hotel-item"><div class="hotel-date"><div class="m">7月</div><div class="d">26</div></div><div class="hotel-info"><div class="hotel-name">K1186次列车卧铺</div><div class="hotel-city">上饶 → 上海松江（途中）</div><div class="hotel-addr">铺位号：待补充</div></div></div>
+      <div class="hotel-item">
+        <div class="hotel-date"><div class="m">7月</div><div class="d">18</div></div>
+        <div class="hotel-info">
+          <div class="hotel-name">K469次列车硬卧</div>
+          <div class="hotel-city">上海松江→赣州｜kj单人</div>
+          <div class="hotel-addr">加8车厢09号下铺</div>
+        </div>
+      </div>
+      <div class="hotel-item">
+        <div class="hotel-date"><div class="m">7月</div><div class="d">19</div></div>
+        <div class="hotel-info">
+          <div class="hotel-name">柒季酒店(龙南滨江广场店)</div>
+          <div class="hotel-city">龙南｜kj单人</div>
+          <div class="hotel-addr">特惠大床房（无窗）</div>
+        </div>
+      </div>
+      <div class="hotel-item">
+        <div class="hotel-date"><div class="m">7月</div><div class="d">20</div></div>
+        <div class="hotel-info">
+          <div class="hotel-name">柒季酒店(龙南滨江广场店)</div>
+          <div class="hotel-city">龙南｜kj单人连住</div>
+          <div class="hotel-addr">特惠大床房（无窗）</div>
+        </div>
+      </div>
+      <div class="hotel-item">
+        <div class="hotel-date"><div class="m">7月</div><div class="d">21</div></div>
+        <div class="hotel-info">
+          <div class="hotel-name">骏逸连锁酒店(河源站亚洲第一高喷泉店)</div>
+          <div class="hotel-city">河源｜kj单人</div>
+          <div class="hotel-addr">轻奢大床房</div>
+        </div>
+      </div>
+      <div class="hotel-item">
+        <div class="hotel-date"><div class="m">7月</div><div class="d">22</div></div>
+        <div class="hotel-info">
+          <div class="hotel-name">如家派柏·云酒店(漳州古城万达广场店)</div>
+          <div class="hotel-city">漳州｜kj/ctc/ccl汇合</div>
+          <div class="hotel-addr">大床房A</div>
+        </div>
+      </div>
+      <div class="hotel-item">
+        <div class="hotel-date"><div class="m">7月</div><div class="d">23</div></div>
+        <div class="hotel-info">
+          <div class="hotel-name">如家派柏·云酒店(漳州古城万达广场店)</div>
+          <div class="hotel-city">漳州｜三人同行连住</div>
+          <div class="hotel-addr">大床房A</div>
+        </div>
+      </div>
+      <div class="hotel-item">
+        <div class="hotel-date"><div class="m">7月</div><div class="d">24</div></div>
+        <div class="hotel-info">
+          <div class="hotel-name">尤溪乐家酒店</div>
+          <div class="hotel-city">尤溪｜kj/ctc/ccl</div>
+          <div class="hotel-addr">乐惠房</div>
+        </div>
+      </div>
+      <div class="hotel-item">
+        <div class="hotel-date"><div class="m">7月</div><div class="d">25</div></div>
+        <div class="hotel-info">
+          <div class="hotel-name">A家连锁酒店(南平九峰店)</div>
+          <div class="hotel-city">延平｜kj+ccl（ctc机场返程）</div>
+          <div class="hotel-addr">静谧双床房</div>
+        </div>
+      </div>
+      <div class="hotel-item">
+        <div class="hotel-date"><div class="m">7月</div><div class="d">26</div></div>
+        <div class="hotel-info">
+          <div class="hotel-name">K1186次列车硬卧</div>
+          <div class="hotel-city">上饶→上海松江｜kj+ccl</div>
+          <div class="hotel-addr">02车厢11号中铺(kj)、02车厢12号中铺(ccl)</div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
-
-<div class="footer">9天跨省环线旅行手册 · 静态版<br>部署于 GitHub Pages</div>
+<div class="footer">9天跨省环线旅行手册</div>
 </div>
-
 <script>
 /* ========== 页面切换 ========== */
 function showPage(name){
