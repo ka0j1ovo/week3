@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0">
-<title>9天环线手册</title>
+<title>9天跨省环线旅行手册</title>
 <script src="https://cdn.jsdelivr.net/npm/echarts@4.9.0/dist/echarts.min.js"></script>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
@@ -107,7 +107,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hira
 <div class="container">
 
 <div class="top-nav">
-  <div class="nav-title">🗺️ 9天环线手册</div>
+  <div class="nav-title">🗺️ 9天跨省环线旅行手册</div>
   <div class="nav-tabs">
     <button class="nav-tab active" onclick="showPage('home')">首页</button>
     <button class="nav-tab" onclick="showPage('day')">每日行程</button>
@@ -121,7 +121,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hira
 <!-- 首页 -->
 <div class="page active" id="page-home">
   <div class="card">
-    <div class="card-title">📍 地图（点击城市跳转当日行程）</div>
+    <div class="card-title">📍 行程交互式地图（点击城市跳转当日行程｜双指缩放/拖拽平移）</div>
     <div id="tripMap"><div class="map-loading">地图加载中...</div></div>
     <p class="map-desc">
       <span style="display:inline-block;width:12px;height:12px;background:#2563eb;border-radius:50%;vertical-align:middle;margin-right:4px"></span>单人独行城市
@@ -131,17 +131,17 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hira
   </div>
 
   <div class="card">
-    <div class="card-title">📅 行程 </div>
+    <div class="card-title">📅 行程日期时间轴</div>
     <div class="date-timeline">
-      <div class="date-item solo" onclick="goDay(0)"><div class="day">7.18</div><div class="week">周六</div><div class="city">上海→赣州</div></div>
-      <div class="date-item solo" onclick="goDay(1)"><div class="day">7.19</div><div class="week">周日</div><div class="city">龙南</div></div>
-      <div class="date-item solo" onclick="goDay(2)"><div class="day">7.20</div><div class="week">周一</div><div class="city">南武当</div></div>
-      <div class="date-item solo" onclick="goDay(3)"><div class="day">7.21</div><div class="week">周二</div><div class="city">河源</div></div>
-      <div class="date-item group" onclick="goDay(4)"><div class="day">7.22</div><div class="week">周三</div><div class="city">潮汕→漳州</div></div>
-      <div class="date-item group" onclick="goDay(5)"><div class="day">7.23</div><div class="week">周四</div><div class="city">土楼</div></div>
-      <div class="date-item group" onclick="goDay(6)"><div class="day">7.24</div><div class="week">周五</div><div class="city">沙县→尤溪</div></div>
-      <div class="date-item group" onclick="goDay(7)"><div class="day">7.25</div><div class="week">周六</div><div class="city">延平</div></div>
-      <div class="date-item group" onclick="goDay(8)"><div class="day">7.26</div><div class="week">周日</div><div class="city">武夷山→上饶</div></div>
+      <div class="date-item solo" onclick="goDay(0)"><div class="day">7.18</div><div class="week">周四</div><div class="city">上海→赣州</div></div>
+      <div class="date-item solo" onclick="goDay(1)"><div class="day">7.19</div><div class="week">周五</div><div class="city">龙南</div></div>
+      <div class="date-item solo" onclick="goDay(2)"><div class="day">7.20</div><div class="week">周六</div><div class="city">南武当</div></div>
+      <div class="date-item solo" onclick="goDay(3)"><div class="day">7.21</div><div class="week">周日</div><div class="city">河源</div></div>
+      <div class="date-item group" onclick="goDay(4)"><div class="day">7.22</div><div class="week">周一</div><div class="city">潮汕→漳州</div></div>
+      <div class="date-item group" onclick="goDay(5)"><div class="day">7.23</div><div class="week">周二</div><div class="city">土楼</div></div>
+      <div class="date-item group" onclick="goDay(6)"><div class="day">7.24</div><div class="week">周三</div><div class="city">沙县→尤溪</div></div>
+      <div class="date-item group" onclick="goDay(7)"><div class="day">7.25</div><div class="week">周四</div><div class="city">延平</div></div>
+      <div class="date-item group" onclick="goDay(8)"><div class="day">7.26</div><div class="week">周五</div><div class="city">武夷山→上饶</div></div>
     </div>
     <p class="map-desc">
       <span style="display:inline-block;width:12px;height:12px;background:#dbeafe;border-radius:3px;vertical-align:middle;margin-right:4px"></span>单人独行
@@ -195,23 +195,23 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hira
     <div class="card-title">🚄 全程车次/航班总表</div>
     <div style="overflow-x:auto">
     <table class="data-table">
-      <thead><tr><th>日期</th><th>类型</th><th>车次</th><th>出发</th><th>到达</th><th>发车</th><th>抵达</th><th>座位/人员</th></tr></thead>
+      <thead><tr><th>日期</th><th>类型</th><th>车次</th><th>出发</th><th>到达</th><th>发车</th><th>抵达</th><th>备注</th></tr></thead>
       <tbody>
-        <tr><td>7.18</td><td>普速</td><td>K469</td><td>上海松江</td><td>赣州</td><td>17:38</td><td>次日07:28</td><td>加8车09下铺｜kj</td></tr>
-        <tr><td>7.19</td><td>普速</td><td>T31</td><td>赣州</td><td>龙南</td><td>07:52</td><td>09:11</td><td>03车03上铺｜kj</td></tr>
-        <tr><td>7.21</td><td>高铁</td><td>G3061</td><td>龙南东</td><td>河源东</td><td>09:10</td><td>10:00</td><td>03车10A｜kj</td></tr>
-        <tr class="group-row"><td>7.22</td><td>城际</td><td>C6784</td><td>河源东</td><td>潮汕</td><td>09:36</td><td>11:39</td><td>05车02F｜kj</td></tr>
-        <tr class="group-row"><td>7.22</td><td>高铁</td><td>G922</td><td>潮汕</td><td>漳州</td><td>17:40</td><td>18:45</td><td>12车02D｜kj</td></tr>
-        <tr class="group-row"><td>7.22</td><td>高铁</td><td>D2393</td><td>厦门</td><td>漳州</td><td>19:24</td><td>19:55</td><td>03车07D(ctc)、03车07F(ccl)</td></tr>
-        <tr class="group-row"><td>7.23</td><td>租车</td><td>全天自驾</td><td>漳州</td><td>土楼环线</td><td>全天</td><td>全天</td><td>kj+ctc+ccl三人同行</td></tr>
-        <tr class="group-row"><td>7.24</td><td>高铁</td><td>G966</td><td>漳州</td><td>三明北</td><td>09:52</td><td>12:04</td><td>03A(kj)、03B(ccl)、03C(ctc)</td></tr>
-        <tr class="group-row"><td>7.24</td><td>高铁</td><td>G1683</td><td>三明北</td><td>尤溪</td><td>18:55</td><td>19:14</td><td>14A(kj)、14B(ccl)、14C(ctc)</td></tr>
-        <tr class="group-row"><td>7.25</td><td>高铁</td><td>G648</td><td>尤溪</td><td>三明北</td><td>11:40</td><td>11:58</td><td>03D(kj)、03F(ccl)｜ctc机场返程</td></tr>
-        <tr class="group-row"><td>7.25</td><td>飞机</td><td>待补</td><td>沙县机场</td><td>虹桥T2</td><td>19:00</td><td>20:20</td><td>ctc单人返程</td></tr>
-        <tr class="group-row"><td>7.25</td><td>高铁</td><td>D6318</td><td>三明北</td><td>延平西</td><td>12:22</td><td>12:39</td><td>04D(kj)、04F(ccl)</td></tr>
-        <tr class="group-row"><td>7.26</td><td>高铁</td><td>G982</td><td>延平</td><td>南平市站</td><td>09:57</td><td>10:23</td><td>05D(kj)、05F(ccl)</td></tr>
-        <tr class="group-row"><td>7.26</td><td>高铁</td><td>G1670</td><td>武夷山北</td><td>上饶</td><td>18:10</td><td>18:33</td><td>02D(kj)、02F(ccl)</td></tr>
-        <tr class="group-row"><td>7.26</td><td>普速</td><td>K1186</td><td>上饶</td><td>上海松江</td><td>22:46</td><td>次日05:43</td><td>02中(kj)、02中(ccl)</td></tr>
+        <tr><td>7.18</td><td>普速</td><td>K469</td><td>上海松江</td><td>赣州</td><td>17:38</td><td>次日07:28</td><td>+1天，加8车9号下铺</td></tr>
+        <tr><td>7.19</td><td>普速</td><td>T31</td><td>赣州</td><td>龙南</td><td>07:52</td><td>09:11</td><td></td></tr>
+        <tr><td>7.21</td><td>高铁</td><td>G3061</td><td>龙南东</td><td>河源东</td><td>09:10</td><td>10:00</td><td></td></tr>
+        <tr class="group-row"><td>7.22</td><td>城际</td><td>C6784</td><td>河源东</td><td>潮汕</td><td>09:36</td><td>11:39</td><td>kj单人，晚间三人汇合</td></tr>
+        <tr class="group-row"><td>7.22</td><td>飞机</td><td class="empty-placeholder">待补</td><td>浦东T1</td><td>厦门高崎T4</td><td>11:25</td><td>13:25</td><td>ccl+ctc</td></tr>
+        <tr class="group-row"><td>7.22</td><td>高铁</td><td>D2393</td><td>厦门</td><td>漳州</td><td>19:24</td><td>19:55</td><td>ccl+ctc，漳州全员汇合</td></tr>
+        <tr class="group-row"><td>7.23</td><td>租车</td><td>全天自驾</td><td>漳州</td><td>土楼环线</td><td>全天</td><td>全天</td><td>三人同行</td></tr>
+        <tr class="group-row"><td>7.24</td><td>高铁</td><td>G966</td><td>漳州</td><td>三明北</td><td>09:52</td><td>12:20</td><td>三人</td></tr>
+        <tr class="group-row"><td>7.24</td><td>高铁</td><td>D3271</td><td>三明北</td><td>尤溪</td><td>18:08</td><td>18:27</td><td>三人</td></tr>
+        <tr class="group-row"><td>7.25</td><td>高铁</td><td>G648</td><td>尤溪</td><td>三明北</td><td>11:40</td><td>11:58</td><td>三人</td></tr>
+        <tr class="group-row"><td>7.25</td><td>飞机</td><td class="empty-placeholder">待补</td><td>沙县机场</td><td>虹桥T2</td><td>19:00</td><td>20:20</td><td>ctc单独返程</td></tr>
+        <tr class="group-row"><td>7.25</td><td>高铁</td><td>D6318</td><td>三明北</td><td>延平西</td><td>12:22</td><td>12:39</td><td>ccl+kj双人</td></tr>
+        <tr class="group-row"><td>7.26</td><td>高铁</td><td>G3090</td><td>延平站</td><td>南平市站</td><td>10:08</td><td>10:34</td><td>ccl+kj</td></tr>
+        <tr class="group-row"><td>7.26</td><td>高铁</td><td>G3332</td><td>武夷山北</td><td>上饶</td><td>17:04</td><td>17:26</td><td>ccl+kj</td></tr>
+        <tr class="group-row"><td>7.26</td><td>普速</td><td>K1186</td><td>上饶</td><td>上海松江</td><td>22:46</td><td>次日05:43</td><td>+1天返程</td></tr>
       </tbody>
     </table>
     </div>
@@ -317,85 +317,23 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hira
   <div class="card">
     <div class="card-title">🏨 全程住宿汇总</div>
     <div id="hotelList">
-      <div class="hotel-item">
-        <div class="hotel-date"><div class="m">7月</div><div class="d">18</div></div>
-        <div class="hotel-info">
-          <div class="hotel-name">K469次列车硬卧</div>
-          <div class="hotel-city">上海松江→赣州｜kj单人</div>
-          <div class="hotel-addr">加8车厢09号下铺</div>
-        </div>
-      </div>
-      <div class="hotel-item">
-        <div class="hotel-date"><div class="m">7月</div><div class="d">19</div></div>
-        <div class="hotel-info">
-          <div class="hotel-name">柒季酒店(龙南滨江广场店)</div>
-          <div class="hotel-city">龙南｜kj单人</div>
-          <div class="hotel-addr">特惠大床房（无窗）</div>
-        </div>
-      </div>
-      <div class="hotel-item">
-        <div class="hotel-date"><div class="m">7月</div><div class="d">20</div></div>
-        <div class="hotel-info">
-          <div class="hotel-name">柒季酒店(龙南滨江广场店)</div>
-          <div class="hotel-city">龙南｜kj单人连住</div>
-          <div class="hotel-addr">特惠大床房（无窗）</div>
-        </div>
-      </div>
-      <div class="hotel-item">
-        <div class="hotel-date"><div class="m">7月</div><div class="d">21</div></div>
-        <div class="hotel-info">
-          <div class="hotel-name">骏逸连锁酒店(河源站亚洲第一高喷泉店)</div>
-          <div class="hotel-city">河源｜kj单人</div>
-          <div class="hotel-addr">轻奢大床房</div>
-        </div>
-      </div>
-      <div class="hotel-item">
-        <div class="hotel-date"><div class="m">7月</div><div class="d">22</div></div>
-        <div class="hotel-info">
-          <div class="hotel-name">如家派柏·云酒店(漳州古城万达广场店)</div>
-          <div class="hotel-city">漳州｜kj/ctc/ccl汇合</div>
-          <div class="hotel-addr">大床房A</div>
-        </div>
-      </div>
-      <div class="hotel-item">
-        <div class="hotel-date"><div class="m">7月</div><div class="d">23</div></div>
-        <div class="hotel-info">
-          <div class="hotel-name">如家派柏·云酒店(漳州古城万达广场店)</div>
-          <div class="hotel-city">漳州｜三人同行连住</div>
-          <div class="hotel-addr">大床房A</div>
-        </div>
-      </div>
-      <div class="hotel-item">
-        <div class="hotel-date"><div class="m">7月</div><div class="d">24</div></div>
-        <div class="hotel-info">
-          <div class="hotel-name">尤溪乐家酒店</div>
-          <div class="hotel-city">尤溪｜kj/ctc/ccl</div>
-          <div class="hotel-addr">乐惠房</div>
-        </div>
-      </div>
-      <div class="hotel-item">
-        <div class="hotel-date"><div class="m">7月</div><div class="d">25</div></div>
-        <div class="hotel-info">
-          <div class="hotel-name">A家连锁酒店(南平九峰店)</div>
-          <div class="hotel-city">延平｜kj+ccl（ctc机场返程）</div>
-          <div class="hotel-addr">静谧双床房</div>
-        </div>
-      </div>
-      <div class="hotel-item">
-        <div class="hotel-date"><div class="m">7月</div><div class="d">26</div></div>
-        <div class="hotel-info">
-          <div class="hotel-name">K1186次列车硬卧</div>
-          <div class="hotel-city">上饶→上海松江｜kj+ccl</div>
-          <div class="hotel-addr">02车厢11号中铺(kj)、02车厢12号中铺(ccl)</div>
-        </div>
-      </div>
+      <div class="hotel-item"><div class="hotel-date"><div class="m">7月</div><div class="d">18</div></div><div class="hotel-info"><div class="hotel-name">K469次列车卧铺</div><div class="hotel-city">上海 → 赣州（途中）</div><div class="hotel-addr">加8车9号下铺</div></div></div>
+      <div class="hotel-item"><div class="hotel-date"><div class="m">7月</div><div class="d">19</div></div><div class="hotel-info"><div class="hotel-name">柒季酒店（龙南滨江广场店）</div><div class="hotel-city">江西 · 龙南 106车队附近</div><div class="hotel-addr">详细地址：待补充</div></div></div>
+      <div class="hotel-item"><div class="hotel-date"><div class="m">7月</div><div class="d">20</div></div><div class="hotel-info"><div class="hotel-name">柒季酒店（龙南滨江广场店）</div><div class="hotel-city">江西 · 龙南</div><div class="hotel-addr">连住第二晚</div></div></div>
+      <div class="hotel-item"><div class="hotel-date"><div class="m">7月</div><div class="d">21</div></div><div class="hotel-info"><div class="hotel-name">骏逸连锁酒店</div><div class="hotel-city">广东 · 河源 万隆城</div><div class="hotel-addr">详细地址：待补充</div></div></div>
+      <div class="hotel-item"><div class="hotel-date"><div class="m">7月</div><div class="d">22</div></div><div class="hotel-info"><div class="hotel-name">如家派柏云酒店（漳州古城万达广场店）</div><div class="hotel-city">福建 · 漳州（全员汇合）</div><div class="hotel-addr">ccl/ctc住宿：待定</div></div></div>
+      <div class="hotel-item"><div class="hotel-date"><div class="m">7月</div><div class="d">23</div></div><div class="hotel-info"><div class="hotel-name">如家派柏云酒店（漳州古城万达广场店）</div><div class="hotel-city">福建 · 漳州（三人同行）</div><div class="hotel-addr">连住第二晚</div></div></div>
+      <div class="hotel-item"><div class="hotel-date"><div class="m">7月</div><div class="d">24</div></div><div class="hotel-info"><div class="hotel-name">尤溪乐家酒店</div><div class="hotel-city">福建 · 尤溪（kj）</div><div class="hotel-addr">ccl/ctc住宿：待定</div></div></div>
+      <div class="hotel-item"><div class="hotel-date"><div class="m">7月</div><div class="d">25</div></div><div class="hotel-info"><div class="hotel-name">A家连锁酒店（南平九峰店）</div><div class="hotel-city">福建 · 延平（ccl+kj）</div><div class="hotel-addr">详细地址：待补充</div></div></div>
+      <div class="hotel-item"><div class="hotel-date"><div class="m">7月</div><div class="d">26</div></div><div class="hotel-info"><div class="hotel-name">K1186次列车卧铺</div><div class="hotel-city">上饶 → 上海松江（途中）</div><div class="hotel-addr">铺位号：待补充</div></div></div>
     </div>
   </div>
 </div>
-<div class="footer">9天跨省环线旅行手册｜GitHub Pages静态页面<br>人员代号：kj=崔秋恺，ctc=陈天成，ccl=周</div>
-</div>
-<script>
 
+<div class="footer">9天跨省环线旅行手册 · 静态版<br>部署于 GitHub Pages</div>
+</div>
+
+<script>
 /* ========== 页面切换 ========== */
 function showPage(name){
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
@@ -533,79 +471,97 @@ function bindClickEvent(){
 
 /* ========== 每日行程数据 ========== */
 const days = [
-{date:'7月18日 周六', city:'上海松江→赣州', mode:'solo', modeText:'👤 单人 kj',
-items:[
-{type:'train',time:'17:38',title:'K469 上海松江站',desc:'抵达次日07:28赣州站，加8车厢09下铺 kj'},
-{type:'hotel',time:'夜间',title:'列车卧铺过夜',desc:'加8车厢09号下铺'}],
-hotel:'K469硬卧｜加8车09下铺 kj'},
-{date:'7月19日 周日', city:'龙南', mode:'solo', modeText:'👤 单人 kj',
-items:[
-{type:'train',time:'07:52',title:'T31 赣州站',desc:'09:11抵达龙南，03车厢03上铺 kj'},
-{type:'bus',time:'10:00',title:'101路公交',desc:'龙南站→106车队'},
-{type:'spot',time:'10:30',title:'阳明心谷、玉虚洞',desc:'寄存行李后游览'},
-{type:'bus',time:'下午',title:'205路',desc:'往返关西围屋'},
-{type:'spot',time:'下午',title:'关西围屋',desc:'客家围屋建筑'}],
-hotel:'柒季酒店(龙南滨江广场店)｜特惠大床房无窗'},
-{date:'7月20日 周一', city:'南武当', mode:'solo', modeText:'👤 单人 kj',
-items:[
-{type:'bus',time:'09:30',title:'杨村黄色村巴',desc:'106车队出发去南武当'},
-{type:'spot',time:'10:30-13:30',title:'南武当山',tip:'17:00末班村巴，错过无车'},
-{type:'bus',time:'午后',title:'换乘村巴',desc:'乌石围、燕翼围'},
-{type:'spot',time:'午后',title:'乌石围、燕翼围',desc:'客家古围屋'},
-{type:'bus',time:'17:00前',title:'返程龙南',desc:'务必赶末班'},],
-hotel:'柒季酒店(龙南滨江广场店)｜连住特惠大床房无窗',warn:'⚠️南武当村巴17:00末班'},
-{date:'7月21日 周二', city:'河源', mode:'solo', modeText:'👤 单人 kj',
-items:[
-{type:'bus',time:'07:15',title:'101路',desc:'龙南车队→龙东站'},
-{type:'train',time:'09:10',title:'G3061 龙南东',desc:'10:00河源东，03车10A kj'},
-{type:'bus',time:'11:00',title:'F2公交',desc:'河源东→万隆城酒店'},
-{type:'spot',time:'下午',title:'河源恐龙博物馆',desc:'恐龙化石馆藏'},
-{type:'spot',time:'下午',title:'万绿湖镜花缘',tip:'无需观光车步行'},
-{type:'spot',time:'下午',title:'农夫山泉水源工厂'}],
-hotel:'骏逸连锁(河源喷泉店)｜轻奢大床房'},
-{date:'7月22日 周三', city:'潮汕→漳州', mode:'group', modeText:'👥 kj/ccl/ctc晚间汇合',
-items:[
-{type:'train',time:'09:36',title:'C6784 河源东',desc:'11:39潮汕，05车02F kj'},
-{type:'spot',time:'到站',title:'潮汕站寄存行李',desc:'轻装逛潮州'},
-{type:'bus',time:'下午',title:'K2公交',desc:'潮汕站往返潮州古城'},
-{type:'spot',time:'下午',title:'潮州古城/广济桥/牌坊街'},
-{type:'train',time:'17:40',title:'G922 潮汕站',desc:'18:45漳州 12车02D kj'},
-{type:'train',time:'19:24',title:'D2393 厦门站',desc:'19:55漳州 07D ccl、07F ctc 三人汇合'}],
-hotel:'如家派柏云漳州万达店｜大床房A'},
-{date:'7月23日 周四', city:'漳州土楼', mode:'group', modeText:'👥 kj+ccl+ctc三人全天',
-items:[{type:'spot',time:'全天',title:'自驾土楼环线',desc:'南靖土楼+永定土楼全天游览'}],
-hotel:'如家派柏云漳州万达店｜连住大床房A'},
-{date:'7月24日 周五', city:'沙县→尤溪', mode:'group', modeText:'👥 三人同行',
-items:[
-{type:'bus',time:'08:30',title:'A3公交',desc:'酒店→漳州站'},
-{type:'train',time:'09:52',title:'G966漳州',desc:'12:04三明北 03A kj 03B ccl 03C ctc'},
-{type:'spot',time:'到站',title:'三明北站寄存行李→沙县老城'},
-{type:'spot',time:'下午',title:'沙县栈道/老火车站/铁道公园'},
-{type:'train',time:'18:55',title:'G1683三明北',desc:'19:14尤溪 14A kj 14B ccl 14C ctc'},
-{type:'bus',time:'傍晚',title:'8路公交',desc:'尤溪站→市区'},
-{type:'spot',time:'夜间',title:'朱子古街夜景',tip:'傍晚灯光好看'}],
-hotel:'尤溪乐家酒店｜乐惠房'},
-{date:'7月25日 周六', city:'延平', mode:'group', modeText:'👥 上午三人｜ctc机场返程',
-items:[
-{type:'spot',time:'上午',title:'尤溪市区闲逛，三人同行'},
-{type:'train',time:'11:40',title:'G648尤溪',desc:'11:58三明北 03D kj 03F ccl；ctc前往沙县机场'},
-{type:'hotel',time:'下午',title:'ctc航班',desc:'19:00沙县机场飞虹桥T2'},
-{type:'train',time:'12:22',title:'D6318三明北',desc:'12:39延平西 04D kj 04F ccl'},
-{type:'bus',time:'到站',title:'1/G3公交',desc:'延平西站→酒店'},
-{type:'spot',time:'下午',title:'延平城市环线',tip:'四鹤步行街避雷牛肉丸烧仙草'}],
-hotel:'A家连锁南平九峰｜静谧双床房 kj+ccl'},
-{date:'7月26日 周日', city:'武夷山→上饶返程', mode:'group', modeText:'👥 kj+ccl双人',
-items:[
-{type:'bus',time:'08:15',title:'G30公交',desc:'酒店→延平站'},
-{type:'train',time:'09:57',title:'G982延平',desc:'10:23南平市站 05D kj 05F ccl'},
-{type:'bus',time:'上午',title:'武夷有轨电车+公交',desc:'至武夷山北站'},
-{type:'train',time:'18:10',title:'G1670武夷山北',desc:'18:33上饶 02D kj 02F ccl'},
-{type:'spot',time:'18:15',title:'上饶金龙岗用餐休整'},
-{type:'train',time:'22:46',title:'K1186上饶',desc:'次日05:43上海松江 02中kj、02中ccl'}],
-hotel:'K1186硬卧｜02车厢11中(kj)、12中(ccl)'}
+  {date:'7月18日 周四', city:'上海松江→赣州', mode:'solo', modeText:'👤 单人独行（kj）',
+    weather:{icon:'⛅', temp:'28~35℃', rain:'40%', wind:'3级', uv:'强'},
+    items:[
+      {type:'train', time:'17:38', title:'K469 上海松江站出发', desc:'前往赣州站，普速列车，次日到达'},
+      {type:'hotel', time:'夜间', title:'列车卧铺过夜', desc:'加8车9号下铺，车程约14小时'}
+    ], hotel:'K469次列车卧铺 · 加8车9号下铺'},
+  {date:'7月19日 周五', city:'龙南', mode:'solo', modeText:'👤 单人独行（kj）',
+    weather:{icon:'🌤️', temp:'27~34℃', rain:'30%', wind:'2级', uv:'很强'},
+    items:[
+      {type:'train', time:'07:52', title:'T31 赣州站出发', desc:'09:11 抵达龙南站，车程1小时19分'},
+      {type:'bus', time:'10:00', title:'101路公交', desc:'龙南站 → 106车队，车程约1小时'},
+      {type:'spot', time:'10:30', title:'放置行李 + 阳明心谷、玉虚洞', desc:'打车前往两个景点，游玩后返回106车队'},
+      {type:'bus', time:'下午', title:'205路公交往返', desc:'前往关西围屋游览'},
+      {type:'spot', time:'下午', title:'关西围屋', desc:'客家围屋代表建筑'}
+    ], hotel:'柒季酒店（龙南滨江广场店）'},
+  {date:'7月20日 周六', city:'南武当', mode:'solo', modeText:'👤 单人独行（kj）',
+    weather:{icon:'⛅', temp:'27~34℃', rain:'50%', wind:'2级', uv:'强'},
+    items:[
+      {type:'bus', time:'09:30', title:'杨村方向黄色村巴', desc:'106车队出发，前往南武当，车程约1小时'},
+      {type:'spot', time:'10:30 - 13:30', title:'南武当山景区', desc:'丹霞地貌景区，建议游玩3小时', tip:'17:00 村巴末班车，务必准时返程！'},
+      {type:'bus', time:'午后', title:'原地等村巴换乘', desc:'15分钟抵达乌石围'},
+      {type:'spot', time:'午后', title:'乌石围', desc:'客家围屋'},
+      {type:'bus', time:'午后', title:'原地等村巴换乘', desc:'8分钟抵达燕翼围'},
+      {type:'spot', time:'午后', title:'燕翼围', desc:'客家围屋'},
+      {type:'bus', time:'17:00前', title:'乘村巴返回龙南', desc:'末班车17:00，切勿错过'}
+    ], hotel:'柒季酒店（龙南滨江广场店）', warn:'⚠️ 南武当村巴 17:00 末班车，超时无返程车辆'},
+  {date:'7月21日 周日', city:'河源', mode:'solo', modeText:'👤 单人独行（kj）',
+    weather:{icon:'🌦️', temp:'28~35℃', rain:'70%', wind:'2级', uv:'中等'},
+    items:[
+      {type:'bus', time:'07:15', title:'101路公交', desc:'106车队 → 龙南站，车程约1小时'},
+      {type:'train', time:'09:10', title:'G3061 龙南东出发', desc:'10:00 抵达河源东站，高铁车程50分钟'},
+      {type:'bus', time:'11:00', title:'F2路公交', desc:'河源东 → 万隆城酒店，车程约1小时'},
+      {type:'spot', time:'下午', title:'河源恐龙博物馆', desc:'恐龙蛋化石馆藏'},
+      {type:'spot', time:'下午', title:'万绿湖风景区 · 镜花缘', desc:'核心游玩区域', tip:'镜花缘不用坐观光车，步行即可'},
+      {type:'spot', time:'下午', title:'农夫山泉工厂', desc:'万绿湖水源地参观'}
+    ], hotel:'骏逸连锁酒店（万隆城）'},
+  {date:'7月22日 周一', city:'潮汕→漳州', mode:'group', modeText:'👥 三人汇合（kj / ccl+ctc晚间汇合）',
+    weather:{icon:'☀️', temp:'28~35℃', rain:'20%', wind:'3级', uv:'很强'},
+    items:[
+      {type:'train', time:'09:36', title:'C6784 河源东出发（kj）', desc:'11:39 抵达潮汕站，城际列车2小时3分'},
+      {type:'spot', time:'抵达后', title:'潮汕站寄存行李', desc:'大件行李寄存后轻装去潮州'},
+      {type:'bus', time:'下午', title:'K2路公交', desc:'潮汕站 → 潮州古城，车程约1小时，往返约5小时'},
+      {type:'spot', time:'下午', title:'潮州古城', desc:'甲第巷、广济桥、牌坊街'},
+      {type:'train', time:'17:00', title:'潮汕 → 漳州（kj）', desc:'傍晚出发前往漳州汇合'},
+      {type:'hotel', time:'——', title:'ccl + ctc 行程', desc:'11:25 浦东T1飞厦门高崎T4（13:25到），下午厦门游玩'},
+      {type:'train', time:'19:24', title:'D2393 厦门出发（ccl+ctc）', desc:'19:55 抵达漳州站，三人漳州汇合'}
+    ], hotel:'kj：如家派柏云酒店（漳州古城万达广场店） ｜ ccl/ctc：待定'},
+  {date:'7月23日 周二', city:'漳州土楼', mode:'group', modeText:'👥 三人全天同行（kj + ccl + ctc）',
+    weather:{icon:'☀️', temp:'28~36℃', rain:'10%', wind:'2级', uv:'很强'},
+    items:[
+      {type:'spot', time:'全天', title:'漳州土楼一日租车环线', desc:'全天租车：漳州 → 南靖土楼 → 永定土楼 → 返回漳州'},
+      {type:'spot', time:'白天', title:'南靖土楼群', desc:'田螺坑/云水谣等经典土楼'},
+      {type:'spot', time:'白天', title:'永定土楼群', desc:'承启楼等大型客家围楼'}
+    ], hotel:'如家派柏云酒店（漳州古城万达广场店）'},
+  {date:'7月24日 周三', city:'沙县→尤溪', mode:'group', modeText:'👥 三人同行（kj + ccl + ctc）',
+    weather:{icon:'⛅', temp:'27~35℃', rain:'40%', wind:'2级', uv:'强'},
+    items:[
+      {type:'bus', time:'08:30', title:'A3路公交', desc:'酒店 → 漳州站，车程约40分钟'},
+      {type:'train', time:'09:52', title:'G966 漳州站出发', desc:'12:20 抵达三明北站，高铁2小时28分'},
+      {type:'spot', time:'抵达后', title:'三明北站寄存行李', desc:'存行李后前往沙县老城'},
+      {type:'spot', time:'下午', title:'沙县老城逛吃', desc:'七峰叠翠栈道、老火车站、铁道公园'},
+      {type:'train', time:'18:08', title:'D3271 三明北出发', desc:'18:27 抵达尤溪站，高铁19分钟'},
+      {type:'bus', time:'傍晚', title:'尤溪8路公交', desc:'尤溪站 → 市区，车程约30分钟'},
+      {type:'spot', time:'夜间', title:'朱子古街', desc:'夜间亮灯景观最佳', tip:'建议天黑后游览，夜景好看'}
+    ], hotel:'kj：尤溪乐家酒店 ｜ ccl/ctc：待定'},
+  {date:'7月25日 周四', city:'延平', mode:'group', modeText:'👥 上午三人 / 下午 ccl+kj 双人',
+    weather:{icon:'🌦️', temp:'27~35℃', rain:'60%', wind:'2级', uv:'中等'},
+    items:[
+      {type:'spot', time:'上午', title:'尤溪市区自由活动', desc:'三人同行'},
+      {type:'train', time:'11:40', title:'G648 尤溪出发', desc:'11:58 抵达三明北，三人同行'},
+      {type:'hotel', time:'下午', title:'ctc 返程航班', desc:'沙县机场19:00起飞 → 20:20 抵达虹桥T2'},
+      {type:'train', time:'12:22', title:'D6318 三明北出发（ccl+kj）', desc:'12:39 抵达延平西站，双人继续行程'},
+      {type:'bus', time:'抵达后', title:'1路 / G3公交', desc:'延平西 → 市区酒店，车程约43分钟，放行李'},
+      {type:'spot', time:'下午', title:'延平环线步行', desc:'延平汽车站 → 水南桥 → 九峰山公园 → 九峰山动物园 → 剑州大桥 → 前进巷 → 四鹤步行街 → 九峰索桥', tip:'四鹤步行街避雷：不要牛肉丸、不要烧仙草'},
+      {type:'spot', time:'夜间', title:'延平城市夜景', desc:'九峰索桥、江景夜景'}
+    ], hotel:'A家连锁酒店（南平九峰店）· ccl+kj'},
+  {date:'7月26日 周五', city:'武夷山→上饶→返程', mode:'group', modeText:'👥 双人结伴（ccl + kj）',
+    weather:{icon:'🌤️', temp:'26~34℃', rain:'30%', wind:'2级', uv:'强'},
+    items:[
+      {type:'bus', time:'08:15', title:'G30路公交', desc:'酒店 → 延平站，车程约50分钟'},
+      {type:'train', time:'10:08', title:'G3090 延平站出发', desc:'10:34 抵达南平市站，高铁26分钟'},
+      {type:'bus', time:'上午', title:'武夷有轨电车', desc:'南平市站 → 武夷山有轨电车站，约40分钟'},
+      {type:'bus', time:'上午', title:'6/7/10路公交', desc:'换乘至武夷山北站，车程约1小时10分'},
+      {type:'train', time:'17:04', title:'G3332 武夷山北出发', desc:'17:26 抵达上饶站，高铁22分钟'},
+      {type:'spot', time:'18:15', title:'上饶金龙岗', desc:'市区用餐休整，停留约40分钟'},
+      {type:'bus', time:'21:00', title:'返回上饶站', desc:'候车准备返程'},
+      {type:'train', time:'22:46', title:'K1186 上饶出发', desc:'次日05:43 抵达上海松江，普速列车返程收官'}
+    ], hotel:'K1186次列车卧铺（返程）'}
 ];
-let currentDay=0;
 
+let currentDay = 0;
 function renderDay(){
   const d = days[currentDay];
   document.getElementById('dayTitle').textContent = d.date + ' · ' + d.city;
